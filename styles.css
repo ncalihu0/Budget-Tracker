@@ -1,0 +1,115 @@
+html {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(#b49fcc, #ead7d7);
+}
+html body {
+  margin: 0;
+}
+html header {
+  margin: 0;
+  background: #412234;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 10% 10%;
+}
+
+.budget_container {
+  height: 100vh;
+}
+.budget_container h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-family: Bungee;
+  color: #EAD7D7;
+  text-align: center;
+}
+.budget_container h2 {
+  margin: 0;
+  padding: 20% 0 0 0;
+  text-align: center;
+  color: #EAD7D7;
+}
+.budget_container h3 {
+  text-align: center;
+  margin: 0;
+  color: #EAD7D7;
+}
+
+.budget_panel {
+  align-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  text-align: center;
+}
+.budget_panel .tab {
+  font-family: Bungee;
+  font-size: 1.5rem;
+  padding: 5% 0;
+  cursor: default;
+  color: #6D6469;
+}
+.budget_panel .list {
+  list-style-type: none;
+  padding: 0;
+  color: #412234;
+  font-family: Racing Sans One;
+}
+.budget_panel .entry {
+  font-size: 1.5rem;
+}
+.budget_panel .input {
+  border: 0;
+  background: #7A6470;
+  padding: 10px;
+  color: white;
+  border-radius: 90px;
+}
+.budget_panel .input::-moz-placeholder {
+  color: white;
+}
+.budget_panel .input::placeholder {
+  color: white;
+}
+.budget_panel .input:focus {
+  outline: none;
+}
+.budget_panel button {
+  cursor: pointer;
+  margin: 5% 0;
+  border: 0;
+  height: 30px;
+  width: 75px;
+  border-radius: 90px;
+  background: #C6BDC2;
+  color: #27141F;
+  font-family: Bungee;
+}
+
+@media screen and (max-width: 334px) {
+  .input {
+    width: 75px;
+  }
+}
+@media screen and (max-width: 644px) {
+  #income,
+  #expenses {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .budget_container h1,
+  .budget_container h2,
+  .budget_container h3 {
+    font-size: 1.5rem;
+  }
+  .budget_container .tab,
+  .budget_container .entry {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,151 @@
+$primary-color: #412234;
+$secondary-color: #EAD7D7;
+$primary-margin: 0;
+$secondary-fontSize: 1.5rem;
+$gradient-color1: #b49fcc;
+$gradient-color2: #ead7d7;
+
+@mixin gradient ($gradient-color1, $gradient-color2) {
+    background: linear-gradient($gradient-color1, $gradient-color2);
+}
+
+html {
+    margin: $primary-margin;
+    height: 100vh;
+    // background: linear-gradient(#b49fcc, #ead7d7);
+    @include gradient($gradient-color1, $gradient-color2);
+
+
+    body {
+        margin: $primary-margin;
+
+    }
+
+    header {
+        margin: $primary-margin;
+        background: $primary-color;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 0 10% 10%;
+    }
+}
+
+
+.budget_container {
+    height: 100vh;
+
+    h1 {
+        margin: $primary-margin;
+        font-size: 2rem;
+        font-family: Bungee;
+        color: $secondary-color;
+        text-align: center;
+    }
+
+    h2 {
+        margin: $primary-margin;
+        padding: 20% 0 0 0;
+        text-align: center;
+        color: $secondary-color;
+    }
+
+    h3 {
+        text-align: center;
+        margin: $primary-margin;
+        color: $secondary-color;
+    }
+
+}
+
+.budget_panel {
+    // height: 50vh;
+    align-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    text-align: center;
+
+    .tab {
+        font-family: Bungee;
+        font-size: 1.5rem;
+        padding: 5% 0;
+        cursor: default;
+        color: #6D6469;
+    }
+
+    .list {
+        list-style-type: none;
+        padding: 0;
+        color: #412234;
+        font-family: Racing Sans One;
+    }
+
+    .entry {
+        font-size: 1.5rem;
+    }
+
+    .input {
+        border: 0;
+        background: #7A6470;
+        padding: 10px;
+        color: white;
+        border-radius: 90px;
+
+        &::placeholder {
+            color: white;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        cursor: pointer;
+        margin: 5% 0;
+        border: 0;
+        height: 30px;
+        width: 75px;
+        border-radius: 90px;
+        background: #C6BDC2;
+        color: #27141F;
+        font-family: Bungee;
+    }
+
+}
+
+@media screen and (max-width: 334px) {
+    .input {
+        width: 75px;
+    }
+}
+
+@media screen and (max-width: 644px) {
+
+    #income,
+    #expenses {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .budget_container {
+
+
+        h1,
+        h2,
+        h3 {
+            font-size: $secondary-fontSize;
+        }
+
+        .tab,
+        .entry {
+            font-size: 1rem;
+        }
+    }
+}
