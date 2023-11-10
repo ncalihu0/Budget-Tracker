@@ -1,6 +1,8 @@
+// a class allows us to encapsulate our data and create our objects 
 class BudgetTracker {
+    // creates our blueprint and allow us to put our elements that are grabbed by the this
     constructor() {
-        // select elements
+        // select elements using this. this is binding our elements to what we declaring them to. our clase we binding it to the selected elements in out html
 
         this.balanceTotal = document.querySelector(".balance_total");
         this.incomeTotal = document.querySelector(".income_total");
@@ -22,12 +24,14 @@ class BudgetTracker {
         this.expenseTitle = document.getElementById("expenses_title_input")
         this.expenseAmount = document.getElementById("expenses_amount_input")
 
-        //variables
+        //variables that handles our array of objects, balance, income, and expenses
         this.entryList = [];
         this.balance = 0;
         this.income = 0;
         this.expenses = 0;
 
+
+        // grabs our buttons and gives it an even listener. when clicked it executes a function
         this.addIncome.addEventListener("click", () => this.handleAddIncome());
         this.addExpense.addEventListener("click", () => this.handleAddExpense());
 
@@ -35,20 +39,27 @@ class BudgetTracker {
 
     }
 
+    // handles the button add income. 
     handleAddIncome() {
+        // if the value of our input title or the input amount is nothing, it doesn't run the code because of our return statement
         if (!this.incomeTitle.value || !this.incomeAmount.value) return;
-
+        // we declare an object which holds our income. our income has key valus of the type, title, and amount
         const income = {
             type: "income",
             title: this.incomeTitle.value,
             amount: parseFloat(this.incomeAmount.value),
         };
 
+        // we have 3 different methods we created 
+        //first one pushes our income object onto our empty array
         this.entryList.push(income);
+        //method that updates our UI. more info down below
         this.updateUI();
+        // method so the input fields clear and show as empty
         this.clearInput([this.incomeTitle, this.incomeAmount]);
     }
 
+    //same with the income, but this handles our expenses when clicked 
     handleAddExpense() {
         if (!this.expenseTitle.value || !this.expenseAmount.value) return;
 
@@ -63,8 +74,9 @@ class BudgetTracker {
         this.clearInput([this.expenseTitle, this.expenseAmount]);
     }
 
-
+    //method to update the UI
     updateUI() {
+        //takes our variables and give them functions to evaluate the total
         this.income = this.calculateTotal("income", this.entryList);
         this.expenses = this.calculateTotal("expense", this.entryList);
         this.balance = Math.abs(this.calculateBalance(this.income, this.expenses));
@@ -79,8 +91,10 @@ class BudgetTracker {
         this.expensesTotal.innerHTML = `$ ${this.expenses}`;
         this.incomeTotal.innerHTML = `$ ${this.income}`;
 
+        // allows us to not have duplicates of out list show up
         this.clearElement([this.expensesList, this.incomeList]);
 
+        // what ends up showing up, depending on the type of entry is shows on our html due to our method
         this.entryList.forEach((entry, index) => {
             if (entry.type === "income") {
                 this.showEntry(this.incomeList, entry.type, entry.title, entry.amount, index)
@@ -91,21 +105,25 @@ class BudgetTracker {
         })
     }
 
+
+    // in our entry, we manipulate our html to showcase a list with what the user has input
     showEntry(list, type, title, amount, id) {
         this.entry = ` <li id = "${id}" class="${type}">
                         <div class="entry">${title}: $${amount}</div>
                         </li>`;
-
+        // afterbegin is when we have one entry, the nest entry goes below that entry
         this.position = "afterbegin";
         list.insertAdjacentHTML(this.position, this.entry);
     }
 
+    // the elements selected will be cleared based on the parameters
     clearElement(elements) {
         elements.forEach(element => {
             element.innerHTML = "";
         })
     }
 
+    // we calculate out total for either the income or the expenses. we create a variable and based on the entry it only takes the same entries and add those together. Then in our method above we set it equal either to income or expenses varibles we declared
     calculateTotal(type, list) {
         this.sum = 0;
         list.forEach(entry => {
@@ -116,22 +134,25 @@ class BudgetTracker {
         return this.sum;
     }
 
+    // makes it so our input box doesn't show what was typed
     clearInput(elements) {
         elements.forEach(element => {
             element.value = "";
         });
     }
 
+    // our balance is based on the income minus the expenses
     calculateBalance(income, expenses) {
         return income - expenses;
     }
 
 }
 
+
+// intantiating our object or creating an instance of a class 
 const budget = new BudgetTracker();
 
-// // select elements
-
+//CODE BEFORE IT WAS IN A CLASS
 // const balanceTotal = document.querySelector(".balance_total");
 // const incomeTotal = document.querySelector(".income_total");
 // const expensesTotal = document.querySelector(".expenses_total");
